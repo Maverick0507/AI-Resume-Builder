@@ -18,7 +18,7 @@
      <b>ResumeAI</b> is designed to make resume creation effortless. With the help of AI, users can generate, update, and customize their resumes, ensuring they stand out to potential employers. The application is secure, user-friendly, and highly customizable.
   </div>
   <br />
-  <a href="https://resume-ai-app.vercel.app/"><strong>➥ Visit ResumeAI App</strong></a>
+  <a href="https://ai-resume-builder-jet.vercel.app/"><strong>➥ Visit ResumeAI App</strong></a>
 </div>
 
 ## <a name="features">✨ Features</a>
@@ -116,6 +116,6 @@ Contributions are welcome! Here's how you can contribute:
 
 ## 📬 Contact
 
-Wanna reach out to me? DM me at 👇
+Wanna reach out to us? DM at 👇
 
-Email: mahmudul15-13791@diu.edu.bd
+Email: mandal.arka003@gmail.com
