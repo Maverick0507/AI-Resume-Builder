@@ -114,8 +114,3 @@ Contributions are welcome! Here's how you can contribute:
 - Push to the branch (`git push origin feature/AmazingFeature`).
 - Open a pull request.
 
-## 📬 Contact
-
-Wanna reach out to me? DM me at 👇
-
-Email: mahmudul15-13791@diu.edu.bd
