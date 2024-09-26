@@ -18,7 +18,7 @@
      <b>ResumeAI</b> is designed to make resume creation effortless. With the help of AI, users can generate, update, and customize their resumes, ensuring they stand out to potential employers. The application is secure, user-friendly, and highly customizable.
   </div>
   <br />
-  <a href="https://resume-ai-app.vercel.app/"><strong>➥ Visit ResumeAI App</strong></a>
+  <a href="ai-resume-builder-jet.vercel.app"><strong>➥ Visit ResumeAI App</strong></a>
 </div>
 
 ## <a name="features">✨ Features</a>
@@ -64,7 +64,7 @@ Make sure you have the following installed on your machine:
 ### Cloning the Repository
 
 ```bash
-git clone https://github.com/Mahmud0808/ResumeAI.git
+git clone https://github.com/Maverick0507/AI-Resume-Builder.git
 cd ResumeAI
 ```
 
