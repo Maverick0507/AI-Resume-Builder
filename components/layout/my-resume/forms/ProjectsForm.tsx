@@ -1,19 +1,26 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { addProjectsToResume } from "@/lib/actions/resume.actions";
 import { useFormContext } from "@/lib/context/FormProvider";
 import { Brain, Loader2, Minus, Plus } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+
+// Define the project structure
+interface Project {
+  projectName: string;
+  role: string;
+  techStack: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
 
 const ProjectsForm = ({ params }: { params: { id: string } }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const { formData, handleInputChange } = useFormContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [projectList, setProjectList] = useState(
+  const [projectList, setProjectList] = useState<Project[]>(
     formData?.projects.length > 0
       ? formData?.projects
       : [
@@ -30,18 +37,18 @@ const ProjectsForm = ({ params }: { params: { id: string } }) => {
   const { toast } = useToast();
 
   useEffect(() => {
-    projectList.forEach((project: any, index: number) => {
-      const textarea = document.getElementById(`description-${index}`) as any;
+    projectList.forEach((project: Project, index: number) => {
+      const textarea = document.getElementById(`description-${index}`) as HTMLTextAreaElement;
       if (textarea) {
         textarea.value = project.description;
       }
     });
   }, [projectList]);
 
-  const handleChange = (event: any, index: number) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => {
     const newEntries = projectList.slice();
     const { name, value } = event.target;
-    newEntries[index][name] = value;
+    newEntries[index][name as keyof Project] = value;
     setProjectList(newEntries);
 
     handleInputChange({
@@ -53,7 +60,7 @@ const ProjectsForm = ({ params }: { params: { id: string } }) => {
   };
 
   const AddNewProject = () => {
-    const newEntries = [
+    const newEntries: Project[] = [
       ...projectList,
       {
         projectName: "",
@@ -86,12 +93,12 @@ const ProjectsForm = ({ params }: { params: { id: string } }) => {
     });
   };
 
-  const onSave = async (e: any) => {
+  const onSave = async (e: React.FormEvent) => {
     e.preventDefault();
 
     setIsLoading(true);
 
-    const result = await addProjectsToResume(params.id, formData.projects);
+    const result = await addProjectToResume(params.id, formData.projects);
 
     if (result.success) {
       toast({
@@ -121,7 +128,7 @@ const ProjectsForm = ({ params }: { params: { id: string } }) => {
           Add your project details
         </p>
 
-        {projectList.map((item: any, index: number) => (
+        {projectList.map((item: Project, index: number) => (
           <div key={index}>
             <div className="grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg">
               <div className="col-span-2 space-y-2">
@@ -209,18 +216,13 @@ const ProjectsForm = ({ params }: { params: { id: string } }) => {
               <Minus className="size-4 mr-2" /> Remove
             </Button>
           </div>
-          <Button
-            disabled={isLoading}
-            onClick={onSave}
-            className="bg-primary-700 hover:bg-primary-800 text-white"
-          >
+          <Button onClick={onSave} disabled={isLoading}>
             {isLoading ? (
-              <>
-                <Loader2 size={20} className="animate-spin" /> &nbsp; Saving
-              </>
+              <Loader2 className="animate-spin size-4 mr-2" />
             ) : (
-              "Save"
+              <Brain className="size-4 mr-2" />
             )}
+            Save
           </Button>
         </div>
       </div>
